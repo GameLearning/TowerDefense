@@ -16,8 +16,10 @@ public:
     static Tower* create(HelloWorld* game, cocos2d::Vec2 location);
     virtual void update(float dt);
     virtual void draw(cocos2d::Renderer* renderer, const cocos2d::Mat4& transform, unsigned int flags);
+    cocos2d::CustomCommand _customCommand;
 private:
     Tower* init(HelloWorld* game, cocos2d::Vec2 location);
+    void onDrawPrimitives(const cocos2d::Mat4 &transform);
     
     int attackRange;
     int damage;

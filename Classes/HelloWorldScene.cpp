@@ -63,7 +63,8 @@ void HelloWorld::loadTowerPositions() {
 
 bool HelloWorld::onTouchBegan(Touch* touch, Event* unused_event) {
     for(Sprite * tb : towerBases){
-            if( tb->getBoundingBox().containsPoint(touch->getLocation()) && !tb->getUserData()){
+            if( tb->getBoundingBox().containsPoint(touch->getLocation())
+                    && canBuyTower() && !tb->getUserData()){
                      //We will spend our gold later.
 
                     Tower * tower = Tower::create(this,tb->getPosition());
@@ -79,4 +80,8 @@ void HelloWorld::onTouchEnded(Touch* touch, Event* unused_event) {
 
 void HelloWorld::onTouchMoved(Touch* touch, Event* unused_event) {
 
+}
+
+bool HelloWorld::canBuyTower() {
+    return true;
 }

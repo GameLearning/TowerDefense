@@ -35,10 +35,20 @@ Tower* Tower::init(HelloWorld* game, cocos2d::Vec2 location) {
     return this;
 }
 
-void Tower::draw(cocos2d::Renderer* renderer, const cocos2d::Mat4& transform, unsigned int flags) {
-    
+void Tower::draw(Renderer* renderer, const cocos2d::Mat4& transform, unsigned int flags) {
+    _customCommand.init(_globalZOrder);
+    _customCommand.func = CC_CALLBACK_0(Tower::onDrawPrimitives, this, transform);
+    renderer->addCommand(&_customCommand);
 }
 
 void Tower::update(float dt) {
 
+}
+
+void Tower::onDrawPrimitives(const Mat4& transform) {
+    kmGLPushMatrix();
+    kmGLLoadMatrix(&transform);
+    
+    DrawPrimitives::setDrawColor4B(255, 255, 255, 255);
+    DrawPrimitives::drawCircle(mySprite->getPosition(), attackRange, 360, 30, false);
 }

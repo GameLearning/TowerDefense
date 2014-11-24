@@ -24,6 +24,7 @@ private:
     cocos2d::Vector<Tower*> towers;
     
     void loadTowerPositions();
+    bool canBuyTower();
 };
 
 #endif // __HELLOWORLD_SCENE_H__
