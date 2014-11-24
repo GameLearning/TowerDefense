@@ -50,6 +50,11 @@ void Waypoint::setNextWayPoint(Waypoint* wayPoint){
     nextWayPoint = wayPoint;
 }
 
+Waypoint* Waypoint::getNextWayPoint() {
+    return nextWayPoint;
+}
+
+
 Vec2 Waypoint::getMyPosition(){
     return myPosition;
 }

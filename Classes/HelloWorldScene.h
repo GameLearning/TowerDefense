@@ -5,6 +5,11 @@
 #include "Tower.h"
 #include "Waypoint.h"
 
+struct Circle {
+    cocos2d::Vec2 center;
+    float radius;
+};
+
 class HelloWorld : public cocos2d::Layer
 {
 public:
@@ -20,6 +25,8 @@ public:
     virtual bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* unused_event);
     virtual void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* unused_event);
     virtual void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* unused_event);
+    
+    cocos2d::Vector<Waypoint*> getWaypoints();
 private:
     cocos2d::Vector<cocos2d::Sprite*> towerBases;
     cocos2d::Vector<Tower*> towers;
@@ -28,6 +35,7 @@ private:
     void loadTowerPositions();
     void addWaypoints();
     bool canBuyTower();
+    bool isCirclesCollide(Circle circle1, Circle circle2);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

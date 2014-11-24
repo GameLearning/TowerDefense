@@ -76,6 +76,7 @@ set(GAME_SRC
   Classes/Tower.cpp
   Classes/libs/pugixml/pugixml.cpp
   Classes/Waypoint.cpp
+  Classes/Enemy.cpp
 )
 elseif ( WIN32 )
 set(GAME_SRC
@@ -86,6 +87,7 @@ set(GAME_SRC
   Classes/HelloWorldScene.cpp
   Classes/Tower.cpp
   Classes/libs/pugixml/pugixml.cpp
+  Classes/Enemy.cpp
 )
 endif()
 

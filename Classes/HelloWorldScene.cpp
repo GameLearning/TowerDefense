@@ -113,3 +113,19 @@ void HelloWorld::addWaypoints() {
     waypoint6->setNextWayPoint(waypoint5);
 
 }
+
+bool HelloWorld::isCirclesCollide(Circle circle1, Circle circle2) {
+    float xdif = circle1.center.x - circle2.center.x;
+    float ydif = circle1.center.y - circle2.center.y;
+ 
+    float distance = sqrt(xdif*xdif+ydif*ydif);
+ 
+    if(distance <= circle1.radius+circle2.radius)
+        return true;
+ 
+    return false;
+}
+
+cocos2d::Vector<Waypoint*> HelloWorld::getWaypoints() {
+    return waypoints;
+}

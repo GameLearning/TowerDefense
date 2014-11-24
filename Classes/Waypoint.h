@@ -15,6 +15,7 @@ public:
     static Waypoint* create(HelloWorld* game, cocos2d::Vec2 location);
     virtual void draw(cocos2d::Renderer* renderer, const cocos2d::Mat4& transform, unsigned int flags);
     void setNextWayPoint(Waypoint* wayPoint);
+    Waypoint* getNextWayPoint();
     cocos2d::Vec2 getMyPosition();
    
     cocos2d::CustomCommand _customCommand;
