@@ -41,6 +41,7 @@ bool HelloWorld::init()
     this->addChild(background);
     
     loadTowerPositions();
+    addWaypoints();
     return true;
 }
 
@@ -84,4 +85,31 @@ void HelloWorld::onTouchMoved(Touch* touch, Event* unused_event) {
 
 bool HelloWorld::canBuyTower() {
     return true;
+}
+
+void HelloWorld::addWaypoints() {
+    Waypoint * waypoint1 = Waypoint::create(this, Vec2(420,35));
+    waypoints.pushBack(waypoint1);
+    
+    Waypoint * waypoint2 = Waypoint::create(this, Vec2(35,35));
+    waypoints.pushBack(waypoint2);
+    waypoint2->setNextWayPoint(waypoint1);
+ 
+    Waypoint * waypoint3 = Waypoint::create(this, Vec2(35,130));
+    waypoints.pushBack(waypoint3);
+    waypoint3->setNextWayPoint(waypoint2);
+    
+    Waypoint * waypoint4 = Waypoint::create(this, Vec2(445,130));
+    waypoints.pushBack(waypoint4);
+    waypoint4->setNextWayPoint(waypoint3);
+ 
+ 
+    Waypoint * waypoint5 = Waypoint::create(this, Vec2(445,220));
+    waypoints.pushBack(waypoint5);
+    waypoint5->setNextWayPoint(waypoint4);
+ 
+    Waypoint * waypoint6 = Waypoint::create(this, Vec2(-40,220));
+    waypoints.pushBack(waypoint6);
+    waypoint6->setNextWayPoint(waypoint5);
+
 }

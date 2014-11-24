@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "Tower.h"
+#include "Waypoint.h"
 
 class HelloWorld : public cocos2d::Layer
 {
@@ -22,8 +23,10 @@ public:
 private:
     cocos2d::Vector<cocos2d::Sprite*> towerBases;
     cocos2d::Vector<Tower*> towers;
+    cocos2d::Vector<Waypoint*> waypoints;
     
     void loadTowerPositions();
+    void addWaypoints();
     bool canBuyTower();
 };
 

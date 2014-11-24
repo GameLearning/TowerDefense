@@ -75,6 +75,7 @@ set(GAME_SRC
   Classes/HelloWorldScene.cpp
   Classes/Tower.cpp
   Classes/libs/pugixml/pugixml.cpp
+  Classes/Waypoint.cpp
 )
 elseif ( WIN32 )
 set(GAME_SRC
