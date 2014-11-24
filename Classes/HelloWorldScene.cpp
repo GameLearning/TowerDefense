@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "libs/pugixml/pugixml.hpp"
+#include "Enemy.h"
 
 USING_NS_CC;
 
@@ -42,6 +43,10 @@ bool HelloWorld::init()
     
     loadTowerPositions();
     addWaypoints();
+    
+    
+    Enemy * enemy = Enemy::create(this);
+    enemy->doActivate();
     return true;
 }
 

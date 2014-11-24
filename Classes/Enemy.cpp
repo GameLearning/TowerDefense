@@ -43,5 +43,23 @@ Enemy* Enemy::init(HelloWorld* game) {
 void Enemy::update(float dt) {
     if(!active) return;
     
+    if(theGame->isCirclesCollide(Circle{myPosition, 1}, Circle{destinationWaypoint->getMyPosition(), 1})){
+        if(destinationWaypoint->getNextWayPoint()){
+            destinationWaypoint = destinationWaypoint->getNextWayPoint();
+        }else{
+//            theGame->getHpDamage();
+//            getRemoved();
+        }
+    }
+    Vec2 targetPoint = destinationWaypoint->getMyPosition();
+    Vec2 normalized = (targetPoint - myPosition).getNormalized(); //Vec2(targetPoint.x-myPosition.x,targetPoint.y-myPosition.y).getNormalized();
+    normalized *= walkingSpeed;
+    myPosition = myPosition + normalized;
     
+    mySprite->setRotation(CC_RADIANS_TO_DEGREES(atan2(normalized.y,-normalized.x)));
+    mySprite->setPosition(myPosition);
+}
+
+void Enemy::doActivate() {
+    active = true;
 }

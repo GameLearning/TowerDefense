@@ -16,6 +16,7 @@ class Enemy : public cocos2d::Node {
 public:
     static Enemy* create(HelloWorld* game);
     virtual void update(float dt);
+    void doActivate();
 private:
     Enemy* init(HelloWorld* game);
     
