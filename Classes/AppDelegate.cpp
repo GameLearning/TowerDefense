@@ -21,7 +21,7 @@ void AppDelegate::initGLContextAttrs()
 
     GLView::setGLContextAttrs(glContextAttrs);
 }
-
+static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
 bool AppDelegate::applicationDidFinishLaunching() {
     // initialize director
     auto director = Director::getInstance();
@@ -31,6 +31,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glview);
     }
 
+    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::SHOW_ALL);
     // turn on display FPS
     director->setDisplayStats(true);
 

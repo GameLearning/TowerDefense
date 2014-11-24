@@ -74,6 +74,7 @@ set(GAME_SRC
   Classes/AppDelegate.cpp
   Classes/HelloWorldScene.cpp
   Classes/Tower.cpp
+  Classes/libs/pugixml/pugixml.cpp
 )
 elseif ( WIN32 )
 set(GAME_SRC
@@ -83,6 +84,7 @@ set(GAME_SRC
   Classes/AppDelegate.cpp
   Classes/HelloWorldScene.cpp
   Classes/Tower.cpp
+  Classes/libs/pugixml/pugixml.cpp
 )
 endif()
 
