@@ -2,6 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "Tower.h"
 
 class HelloWorld : public cocos2d::Layer
 {
@@ -14,6 +15,15 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+    
+    virtual bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* unused_event);
+    virtual void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* unused_event);
+    virtual void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* unused_event);
+private:
+    cocos2d::Vector<cocos2d::Sprite*> towerBases;
+    cocos2d::Vector<Tower*> towers;
+    
+    void loadTowerPositions();
 };
 
 #endif // __HELLOWORLD_SCENE_H__

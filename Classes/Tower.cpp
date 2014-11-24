@@ -4,7 +4,7 @@
  * 
  * Created on November 23, 2014, 6:01 PM
  */
-
+#include "HelloWorldScene.h"
 #include "Tower.h"
 USING_NS_CC;
 Tower* Tower::create(HelloWorld* game, cocos2d::Vec2 location) {

@@ -9,7 +9,6 @@
 #define	TOWER_H
 
 #include "cocos2d.h"
-#include "HelloWorldScene.h"
 
 class HelloWorld;
 class Tower : public cocos2d::Node {
