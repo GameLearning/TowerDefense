@@ -20,6 +20,12 @@ public:
 private:
     Tower* init(HelloWorld* game, cocos2d::Vec2 location);
     void onDrawPrimitives(const cocos2d::Mat4 &transform);
+    void targetKilled();
+    void shootWeapon(float dt);
+    void damageEnemy();
+    
+    bool attacking;
+    Enemy *chosenEnemy;
     
     int attackRange;
     int damage;

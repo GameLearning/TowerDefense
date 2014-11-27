@@ -17,6 +17,7 @@ public:
     static Enemy* create(HelloWorld* game);
     virtual void update(float dt);
     void doActivate(float dt);
+    cocos2d::Vec2 getSpritePosition(){return mySprite->getPosition();};
 private:
     Enemy* init(HelloWorld* game);
     virtual void remove();

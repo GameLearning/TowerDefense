@@ -42,13 +42,57 @@ void Tower::draw(Renderer* renderer, const cocos2d::Mat4& transform, unsigned in
 }
 
 void Tower::update(float dt) {
-
+    if (chosenEnemy){
+        //We make it turn to target the enemy chosen
+        Vec2 normalized = ccpNormalize(Vec2(chosenEnemy->getSpritePosition().x-mySprite->getPositionX(),
+                                              chosenEnemy->getSpritePosition().y-mySprite->getPositionY()));
+        mySprite->setRotation(CC_RADIANS_TO_DEGREES(atan2(normalized.y,-normalized.x))+90);
+ 
+        if(! theGame->isCirclesCollide(Circle{mySprite->getPosition(),attackRange},Circle{chosenEnemy->getSpritePosition(),1}))
+        {
+            //lostSightOfEnemy();
+            chosenEnemy =nullptr;
+            unschedule(schedule_selector(Tower::shootWeapon));
+        }
+    } else {
+        for(auto enemy : theGame->getEnemies())
+        {
+            if(theGame->isCirclesCollide(Circle{mySprite->getPosition(),attackRange},Circle{enemy->getSpritePosition(),1}))
+            {
+                chosenEnemy = enemy;
+                schedule(schedule_selector(Tower::shootWeapon),fireRate);
+                break;
+            }
+        }
+    }
 }
 
 void Tower::onDrawPrimitives(const Mat4& transform) {
     kmGLPushMatrix();
     kmGLLoadMatrix(&transform);
     
-    DrawPrimitives::setDrawColor4B(255, 255, 255, 255);
-    DrawPrimitives::drawCircle(mySprite->getPosition(), attackRange, 360, 30, false);
+//    DrawPrimitives::setDrawColor4B(255, 255, 255, 255);
+//    DrawPrimitives::drawCircle(mySprite->getPosition(), attackRange, 360, 30, false);
+}
+
+void Tower::shootWeapon(float dt) {
+    auto bullet = Sprite::create("bullet.png");
+    bullet->setPosition(mySprite->getPosition());
+    theGame->addChild(bullet);
+    
+    bullet->runAction(Sequence::create(
+            MoveTo::create(0.1,chosenEnemy->getSpritePosition()),
+            CallFunc::create(bullet, callfunc_selector(Sprite::removeFromParent)),
+            CallFunc::create(this, callfunc_selector(Tower::damageEnemy)),
+            NULL
+    ));
+}
+
+void Tower::targetKilled() {
+    chosenEnemy = nullptr;
+    unschedule(schedule_selector(Tower::shootWeapon));
+}
+
+void Tower::damageEnemy() {
+
 }
