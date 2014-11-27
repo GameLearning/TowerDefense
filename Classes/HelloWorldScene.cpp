@@ -1,6 +1,4 @@
 #include "HelloWorldScene.h"
-#include "libs/pugixml/pugixml.hpp"
-#include "Enemy.h"
 
 USING_NS_CC;
 
@@ -44,9 +42,7 @@ bool HelloWorld::init()
     loadTowerPositions();
     addWaypoints();
     
-    
-    Enemy * enemy = Enemy::create(this);
-    enemy->doActivate();
+    loadWaves();
     return true;
 }
 
@@ -133,4 +129,42 @@ bool HelloWorld::isCirclesCollide(Circle circle1, Circle circle2) {
 
 cocos2d::Vector<Waypoint*> HelloWorld::getWaypoints() {
     return waypoints;
+}
+
+bool HelloWorld::loadWaves() {
+    CCLOG("loadWaves");
+    std::string file_path = FileUtils::getInstance()->fullPathForFilename("Waves.xml");
+    pugi::xml_document _levelData;
+    _levelData.load_file(file_path.c_str());
+    
+//    if (wavesNode){
+//        CCLOG("wavesNode in if");
+////        wavesNode =  wavesNode.r
+//        _levelData.child("waves").remove_child(wavesNode);
+//        wavesNode =  _levelData.child("waves").first_child();
+//        //if (wavesNode == _levelData.child("waves").first_child() ) return false;
+//    }else {
+//        CCLOG("wavesNode in else");
+        wavesNode =  _levelData.child("waves").first_child();
+//    }
+    CCLOG("wavesNode before loop");
+    for (pugi::xml_node wave : wavesNode){
+        auto spawnTime = wave.attribute("spawnTime").as_float();
+        
+        Enemy * enemy = Enemy::create(this);
+        enemy->scheduleOnce(schedule_selector(Enemy::doActivate),spawnTime);
+        CCLOG("1");
+        enemies.pushBack(enemy);
+        CCLOG("2");
+    }
+    CCLOG("wavesNode after loop");
+    return true;
+}
+
+void HelloWorld::enemyGotKilled() {
+//    if (++killedEnemies == enemies.size()){
+//        killedEnemies = 0;
+//        enemies.clear();
+//        loadWaves();
+//    }
 }

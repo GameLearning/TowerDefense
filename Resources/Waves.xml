@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<waves>
+    <wave>
+        <enemy spawnTime="0.1"/>
+        <enemy spawnTime="0.5"/>
+        <enemy spawnTime="0.6"/>
+        <enemy spawnTime="1"/>
+        <enemy spawnTime="3"/>
+        <enemy spawnTime="6"/>
+    </wave>
+    <wave>
+        <enemy spawnTime="1"/>
+        <enemy spawnTime="2"/>
+        <enemy spawnTime="3"/>
+    </wave>
+    <wave>
+        <enemy spawnTime="1"/>
+        <enemy spawnTime="2"/>
+        <enemy spawnTime="3"/>
+        <enemy spawnTime="4"/>
+        <enemy spawnTime="5"/>
+    </wave>
+</waves>

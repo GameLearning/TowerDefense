@@ -16,9 +16,10 @@ class Enemy : public cocos2d::Node {
 public:
     static Enemy* create(HelloWorld* game);
     virtual void update(float dt);
-    void doActivate();
+    void doActivate(float dt);
 private:
     Enemy* init(HelloWorld* game);
+    virtual void remove();
     
     cocos2d::Vec2 myPosition;
     int maxHp;

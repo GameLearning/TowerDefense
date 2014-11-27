@@ -48,7 +48,7 @@ void Enemy::update(float dt) {
             destinationWaypoint = destinationWaypoint->getNextWayPoint();
         }else{
 //            theGame->getHpDamage();
-//            getRemoved();
+            remove();
         }
     }
     Vec2 targetPoint = destinationWaypoint->getMyPosition();
@@ -60,6 +60,12 @@ void Enemy::update(float dt) {
     mySprite->setPosition(myPosition);
 }
 
-void Enemy::doActivate() {
+void Enemy::doActivate(float dt) {
     active = true;
+}
+
+void Enemy::remove() {
+    theGame->getEnemies().eraseObject(this,false);
+    removeFromParentAndCleanup(true);
+    theGame->enemyGotKilled();
 }
